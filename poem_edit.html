@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Edit Poem</h1>
+
+    {% if logged_in %}
+      <p>Logged in as <b>{{ username }}</b></p>
+    {% endif %}
+
+    <form method="post" action="/poems/{{ poem.id }}/update">
+      <p>Title<br/><input name="title" value="{{ poem.title }}" /></p>
+      <p>Body<br/><textarea name="body" rows="18" cols="80">{{ poem.body }}</textarea></p>
+      <button type="submit">Save</button>
+    </form>
+
+    <p><a href="/poems/{{ poem.id }}">Back to poem</a></p>
+  </body>
+</html>

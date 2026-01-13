@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>My Drafts</h1>
+
+    {% if logged_in %}
+      <p>Logged in as <b>{{ username }}</b></p>
+      <form method="post" action="/logout"><button type="submit">Logout</button></form>
+    {% endif %}
+
+    <ul>
+      {% for p in poems %}
+        <li>
+          <a href="/poems/{{ p.id }}">{{ p.title }}</a>
+          ({{ p.status }})
+          — <a href="/poems/{{ p.id }}/edit">edit</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p><a href="/poems">Back to poems</a></p>
+  </body>
+</html>

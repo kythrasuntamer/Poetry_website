@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Poems</h1>
+
+    {% if logged_in %}
+      <p>Logged in as <b>{{ username }}</b></p>
+      <form method="post" action="/logout"><button type="submit">Logout</button></form>
+      <p><a href="/poems/new">New poem</a> | <a href="/me/drafts">My drafts</a></p>
+    {% else %}
+      <p><a href="/register">Register</a> | <a href="/login">Login</a></p>
+    {% endif %}
+
+    <hr />
+
+    <ul>
+      {% for p in poems %}
+        <li>
+          <a href="/poems/{{ p.id }}">{{ p.title }}</a>
+          by {{ p.author }}
+          {% if p.published_at.is_some() %}
+            ({{ p.published_at.as_ref().unwrap() }})
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p><a href="/">Home</a></p>
+  </body>
+</html>
